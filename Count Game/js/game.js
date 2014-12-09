@@ -1,5 +1,6 @@
 var c={};
-
+var tiles = 4;
+var next = 1;
 c.Tile = (function(){
 	function Tile(number) {
 		this.initialize();
@@ -33,8 +34,17 @@ c.Game = (function() {
 		console.log("Count99 game starts.");
 		this.canvas = document.getElementById('game-canvas');
 		this.stage = new createjs.Stage(this.canvas);
-		var tiles = 4;
-		var next = 1;
+		this.initGame();
+
+		var restartButton = document.getElementById('restart-button');
+		restartButton.onclick = (function(event) {
+			var gameoverScene = document.getElementById('gameover');
+			gameoverScene.classList.remove('gameover-appear');
+			this.initGame();
+		}).bind(this);
+
+	}
+	countgame.prototype.initGame = function() {
 		for (var i=tiles; i >=1; i--) {
 			var tile = new c.Tile(i);
 			this.stage.addChild(tile);
@@ -48,6 +58,7 @@ c.Game = (function() {
 					next++;
 					document.getElementById('next-count').innerHTML = next;
 					if (next > tiles) {
+						next = 1;
 						this.gameOver();
 					}
 					this.stage.update();
@@ -57,6 +68,7 @@ c.Game = (function() {
 		}
  		this.stage.update();
 	}
+
 	countgame.prototype.gameOver = function() {
 		next = 1;
 		document.getElementById('next-count').innerHTML = next;
