@@ -1,9 +1,22 @@
 #game-canvas {
+    display: block;
+}
+#game {
     width: 480px;
     height: 320px;
     border: 1px solid black;
-    display: block;
-    margin: auto;
+    margin:auto;
+    position: relative;
+    overflow: hidden;
+}
+#hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ac1000;
+    background: #efefef;
+    padding: 10px;
+
 }
 * {
     font-family: Lucida Sans, Arial, Helvetica, sans-serif;

@@ -33,13 +33,25 @@ c.Game = (function() {
 		console.log("Count99 game starts.");
 		this.canvas = document.getElementById('game-canvas');
 		this.stage = new createjs.Stage(this.canvas);
+		var tiles = 10;
+		var next = 1;
+		for (var i=tiles; i >=1; i--) {
+			var tile = new c.Tile(i);
+			this.stage.addChild(tile);
 
-		var tile = new c.Tile(99);
-		this.stage.addChild(tile);
+			tile.x = Math.random()*(this.canvas.width-tile.width);
+			tile.y = Math.random()*(this.canvas.height-tile.height);
+			
+			tile.onPress = (function(event) {
+				if (event.target.number===next) {
+					this.stage.removeChild(event.target);
+					next++;
+					document.getElementById('next-count').innerHTML = next;
+					this.stage.update();
+				}
 
-		tile.x = Math.random()*(this.canvas.width-tile.width);
-		tile.y = Math.random()*(this.canvas.height-tile.height);
-
+			}).bind(this);
+		}
  		this.stage.update();
 	}
 	return countgame;
