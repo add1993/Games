@@ -1,4 +1,5 @@
 #game-canvas {
+    background-image: url(../images/bg.jpg);
     display: block;
 }
 #game {
@@ -29,6 +30,7 @@
     padding-top: 50px;
     text-align: center;
     font-size: 2em;
+    background: white url(../images/gameover.png);
 }
 
 #gameover.gameover-appear {
@@ -36,4 +38,16 @@
     -webkit-transition: top .3s ease-out;
     -moz-transition: top .3s ease-out;
     transition: top .3s ease-out;
+}
+
+#restart-button {
+    display: block;
+    margin: 160px auto 0 auto;
+    background: url(../images/restart.png) no-repeat;
+    width: 50px;
+    height: 80px;
+}
+
+#restart-button:active {
+    background-position: 0 -67px;
 }

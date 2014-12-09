@@ -7,14 +7,9 @@ c.Tile = (function(){
 
 		this.number = number;
 		this.width = this.height = 80;
-		var shape = new createjs.Shape();
-		shape.graphics.setStrokeStyle(1);
-		shape.graphics.beginStroke("#000");
-		shape.graphics.beginFill("#efefef");
-
-		shape.graphics.rect(0,0,this.width,this.height);
-
-		this.addChild(shape);
+		var image = new createjs.Bitmap('images/tile.jpg');
+		this.addChild(image);
+	
 		var numberText = new createjs.Text(number, "24px Helvetica", "#ac1000");
 		numberText.x = this.width/2;
 		numberText.y = this.height/2;
