@@ -33,7 +33,7 @@ c.Game = (function() {
 		console.log("Count99 game starts.");
 		this.canvas = document.getElementById('game-canvas');
 		this.stage = new createjs.Stage(this.canvas);
-		var tiles = 10;
+		var tiles = 4;
 		var next = 1;
 		for (var i=tiles; i >=1; i--) {
 			var tile = new c.Tile(i);
@@ -47,6 +47,9 @@ c.Game = (function() {
 					this.stage.removeChild(event.target);
 					next++;
 					document.getElementById('next-count').innerHTML = next;
+					if (next > tiles) {
+						this.gameOver();
+					}
 					this.stage.update();
 				}
 
@@ -54,6 +57,14 @@ c.Game = (function() {
 		}
  		this.stage.update();
 	}
+	countgame.prototype.gameOver = function() {
+		next = 1;
+		document.getElementById('next-count').innerHTML = next;
+
+		var gameOverScene = document.getElementById('gameover');
+		gameOverScene.classList.add('gameover-appear');
+
+	};
 	return countgame;
 })();
 
