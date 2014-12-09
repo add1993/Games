@@ -1,3 +1,6 @@
+html, body {
+    font-family: "alpha_echoregular", sans-serif;
+}
 #game-canvas {
     background-image: url(../images/bg.jpg);
     display: block;
