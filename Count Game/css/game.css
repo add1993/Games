@@ -1,5 +1,7 @@
 html, body {
     font-family: "alpha_echoregular", sans-serif;
+    margin: 0;
+    padding: 0;
 }
 #game-canvas {
     background-image: url(../images/bg.jpg);
