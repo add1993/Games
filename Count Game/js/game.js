@@ -1,6 +1,7 @@
 var c={};
 var tiles = 4;
 var next = 1;
+var score;
 c.Tile = (function(){
 	function Tile(number) {
 		this.initialize();
@@ -11,8 +12,8 @@ c.Tile = (function(){
 		this.addChild(image);
 	
 		var numberText = new createjs.Text(number, "28px alpha_echoregular, sans-serif", "#000f55");
-		numberText.x = this.width/2;
-		numberText.y = this.height/2;
+		numberText.x = this.width/2-5;
+		numberText.y = this.height/2+5;
 
 		numberText.textAlign = "center";
 		numberText.textBaseline = "middle";
@@ -59,6 +60,7 @@ c.Game = (function() {
 					next++;
 					document.getElementById('next-count').innerHTML = next;
 					if (next > tiles) {
+						score = next;
 						next = 1;
 						this.gameOver();
 					}
@@ -77,12 +79,13 @@ c.Game = (function() {
 	};
 
 	countgame.prototype.gameOver = function() {
-		next = 1;
 		document.getElementById('next-count').innerHTML = next;
-
 		var gameOverScene = document.getElementById('gameover');
 		gameOverScene.classList.add('gameover-appear');
 
+		var scoreAppear = document.getElementById('marks');
+		scoreAppear.classList.add('marks-appear');
+		document.getElementById('score').innerHTML = score-1;
 	};
 	return countgame;
 })();

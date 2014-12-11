@@ -20,8 +20,7 @@ html, body {
     top: 0;
     left: 0;
     color: #ac1000;
-    background: #efefef;
-    padding: 10px;
+    padding: 2px;
 
 }
 
@@ -61,6 +60,18 @@ html, body {
     background-position: 0 -67px;
 }
 
+#marks {
+    position: absolute;
+    top: -320px;
+    left: 0;
+    color: #ffffff;
+}
+
+#marks.marks-appear {
+    top: 100px;
+    left: 317px;
+}
+
 #gameover {
     position: absolute;
     top: -320px;
@@ -83,10 +94,10 @@ html, body {
 
 #restart-button {
     display: block;
-    margin: 160px auto 0 auto;
+    margin: 165px auto 0 auto;
     background: url(../images/restart.png) no-repeat;
-    width: 50px;
-    height: 80px;
+    width: 180px;
+    height: 60px;
 }
 
 #restart-button:active {
