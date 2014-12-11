@@ -29,7 +29,13 @@ c.Game = (function() {
 		console.log("Count99 game starts.");
 		this.canvas = document.getElementById('game-canvas');
 		this.stage = new createjs.Stage(this.canvas);
-		this.initGame();
+
+		var startButton = document.getElementById('start-button');
+		startButton.onclick = (function(event) {
+			var gamestartScene = document.getElementById('start');
+			gamestartScene.classList.add('start-disappear');
+			this.initGame();
+		}).bind(this);
 
 		var restartButton = document.getElementById('restart-button');
 		restartButton.onclick = (function(event) {
@@ -63,6 +69,12 @@ c.Game = (function() {
 		}
  		this.stage.update();
 	}
+
+	countgame.prototype.gameStart = function() {
+		var gameStartScene = document.getElementById('start');
+		gameStartScene.classList.add('start-disappear');
+
+	};
 
 	countgame.prototype.gameOver = function() {
 		next = 1;

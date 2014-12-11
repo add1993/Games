@@ -25,6 +25,42 @@ html, body {
 
 }
 
+#start {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 480px;
+    height: 320px;
+    background: white;
+    padding-top: 50px;
+    text-align: center;
+    font-size: 2em;
+    background: white url(../images/start.png);
+}
+
+#start.start-disappear {
+    top: -380px;
+    -webkit-transition: top .3s ease-out;
+    -moz-transition: top .3s ease-out;
+    transition: top .3s ease-out;
+}
+
+#start-button {
+    display: block;
+    margin: 160px auto 0 auto;
+    background: url(../images/stb.png) no-repeat;
+    width: 160px;
+    height: 80px;
+}
+
+#start-button:hover {
+    width: 168px;
+}
+
+#start-button:active {
+    background-position: 0 -67px;
+}
+
 #gameover {
     position: absolute;
     top: -320px;
