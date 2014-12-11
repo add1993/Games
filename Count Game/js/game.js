@@ -7,10 +7,10 @@ c.Tile = (function(){
 
 		this.number = number;
 		this.width = this.height = 80;
-		var image = new createjs.Bitmap('images/tile.jpg');
+		var image = new createjs.Bitmap('images/tilep.png');
 		this.addChild(image);
 	
-		var numberText = new createjs.Text(number, "24px alpha_echoregular, sans-serif", "#ac1000");
+		var numberText = new createjs.Text(number, "28px alpha_echoregular, sans-serif", "#000f55");
 		numberText.x = this.width/2;
 		numberText.y = this.height/2;
 
