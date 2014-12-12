@@ -107,6 +107,8 @@ c.Game = (function() {
 				} else {
 					score = next;
 					next = 1;
+					this.stage.removeAllChildren();
+					this.stage.update();
 					this.gameOver();
 				}
 
