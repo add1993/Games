@@ -1,5 +1,5 @@
 var c={};
-var tiles = 5;
+var tiles = 10;
 var next = 1;
 var score;
 c.Tile = (function(){
@@ -7,12 +7,12 @@ c.Tile = (function(){
 		this.initialize();
 
 		this.number = number;
-		this.width = this.height = 80;
+		this.width = this.height = 60;
 		var image = new createjs.Bitmap(c.graphics.tilep.path);
 		this.addChild(image);
 	
-		var numberText = new createjs.Text(number, "28px alpha_echoregular, sans-serif", "#000f55");
-		numberText.x = this.width/2-5;
+		var numberText = new createjs.Text(number, "34px alpha_echoregular, sans-serif", "#000f55");
+		numberText.x = this.width/2-3;
 		numberText.y = this.height/2+5;
 
 		numberText.textAlign = "center";
@@ -46,7 +46,6 @@ c.Preloader = (function(){
 	for (var i=0, len=totalFiles; i<len; i++) {
 	imageToLoad = imagesList[i];
 	var img = new Image();
-	// make sure we have onload event declaring before setting the src property.
 	img.onload = (function(event) {
 	loadedFiles++;
 	console.log ('loaded', event, loadedFiles, '/', totalFiles)
@@ -105,6 +104,10 @@ c.Game = (function() {
 						this.gameOver();
 					}
 					this.stage.update();
+				} else {
+					score = next;
+					next = 1;
+					this.gameOver();
 				}
 
 			}).bind(this);
