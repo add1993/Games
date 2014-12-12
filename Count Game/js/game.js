@@ -1,5 +1,5 @@
 var c={};
-var tiles = 4;
+var tiles = 5;
 var next = 1;
 var score;
 c.Tile = (function(){
@@ -8,7 +8,7 @@ c.Tile = (function(){
 
 		this.number = number;
 		this.width = this.height = 80;
-		var image = new createjs.Bitmap('images/tilep.png');
+		var image = new createjs.Bitmap(c.graphics.tilep.path);
 		this.addChild(image);
 	
 		var numberText = new createjs.Text(number, "28px alpha_echoregular, sans-serif", "#000f55");
@@ -25,17 +25,57 @@ c.Tile = (function(){
 	return Tile;
 })();
 
+c.Preloader = (function(){
+	// constructor
+	function Preloader(game) {
+	this.game = game;
+	};
+	Preloader.prototype.loadGraphics = function(){
+	var imagesList = [
+	{name:"tilep", path:"images/tilep.png"},
+	{name:"marks", path:"images/marks.png"},
+	{name:"bg", path:"images/bg.jpg"},
+	{name:"gameover", path:"images/gameover.png"},
+	{name:"restartButton", path:"images/restart.png"},
+	{name:"start", path:"images/start.png"},
+	{name:"stb", path:"images/stb.png"},
+	];
+	c.graphics = {};
+	var totalFiles = imagesList.length;
+	var loadedFiles = 0;
+	for (var i=0, len=totalFiles; i<len; i++) {
+	imageToLoad = imagesList[i];
+	var img = new Image();
+	// make sure we have onload event declaring before setting the src property.
+	img.onload = (function(event) {
+	loadedFiles++;
+	console.log ('loaded', event, loadedFiles, '/', totalFiles)
+	if (loadedFiles >= totalFiles) {
+	this.game.initGame();
+	}
+	}).bind(this);
+	console.log ("loading: ", imageToLoad.path);
+	img.src = imageToLoad.path;
+	c.graphics[imageToLoad.name] = imageToLoad;
+	};
+	}
+	return Preloader;
+})();
+
+
 c.Game = (function() {
 	function countgame() {
 		console.log("Count99 game starts.");
 		this.canvas = document.getElementById('game-canvas');
 		this.stage = new createjs.Stage(this.canvas);
 
+		var preloader = new c.Preloader(this);
+		
 		var startButton = document.getElementById('start-button');
 		startButton.onclick = (function(event) {
 			var gamestartScene = document.getElementById('start');
 			gamestartScene.classList.add('start-disappear');
-			this.initGame();
+			preloader.loadGraphics();
 		}).bind(this);
 
 		var restartButton = document.getElementById('restart-button');
